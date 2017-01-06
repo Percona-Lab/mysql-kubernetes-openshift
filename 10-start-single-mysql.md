@@ -20,3 +20,7 @@ spec:
 ```
 
 `kubectl create -f mysql.yaml`
+
+Check status
+
+`kubectl describe -f mysql.yaml`
