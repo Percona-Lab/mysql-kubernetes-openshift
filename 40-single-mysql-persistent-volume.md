@@ -6,11 +6,8 @@ pv.json
     "apiVersion": "v1",                                                                                           
     "kind": "PersistentVolume",
     "metadata": {                                                                                                 
-        "name": "default-drive",                                                                             
-        "labels": {                                                                                               
-             "name": "default-drive"                                                                         
-        }
-    },      
+        "name": "default-drive"
+    },
     "spec": {                                                                                                     
         "capacity": {
             "storage": "100Gi"                                                                                     
@@ -18,8 +15,10 @@ pv.json
         "accessModes": [                                                                                          
             "ReadWriteMany"                                                                                       
         ],                                                                                                        
-        "hostPath": {                                                                                    
-            "path": "/data/flash/volume"
+        "persistentVolumeReclaimPolicy": "Recycle",
+        "nfs": {                                                                                    
+            "path": "/data/flash/pv0001",
+            "server": "127.0.0.1"
         }
     }
 }
@@ -67,13 +66,10 @@ metadata:
 spec:
   containers:
   - name: ps
-    image: perconalab/percona-server
+    image: percona/percona-server
     env:
     - name: MYSQL_ROOT_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: mysql-pass
-          key: password.txt
+      value: testkube
     ports:
     - containerPort: 3306
     volumeMounts:
