@@ -42,7 +42,7 @@ pv.json
 ```
 
 mysql-pv.yaml
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
