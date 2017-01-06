@@ -10,7 +10,7 @@ metadata:
 spec:
   containers:
   - name: ps
-    image: perconalab/percona-server
+    image: percona/percona-server
     env:
     - name: MYSQL_ROOT_PASSWORD
           # change this
